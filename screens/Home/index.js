@@ -72,7 +72,7 @@ export default function Home({ navigation }) {
           );
           if (response.data.data === undefined) {
             setLoader(false);
-            setEmpty("no orders found for today");
+            setEmpty("No orders found for today");
           } else {
             setLoader(false);
             setData(response.data.data);
@@ -91,14 +91,15 @@ export default function Home({ navigation }) {
     setSelect(acti);
   };
 
-  const handleRowPress = (val1, val2) => {
+  const handleRowPress = (val1, val2, val3) => {
     setSelectItem(val1);
     setSelect(-1);
-    console.log("ggggggg", val1, val2);
+    console.log("ggggggg", val1, val2, val3);
 
     const dataNew = {
       status: val1,
       oid: val2,
+      user_status: val3
     };
 
     axios({
@@ -301,7 +302,8 @@ export default function Home({ navigation }) {
                                         onPress={() =>
                                           handleRowPress(
                                             item1.value,
-                                            item.order_id
+                                            item.order_id,
+                                            item.user_status
                                           )
                                         }
                                       >

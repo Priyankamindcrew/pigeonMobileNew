@@ -26,11 +26,31 @@ import {
 import Toast, { DURATION } from "react-native-easy-toast";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Spinner from "react-native-loading-spinner-overlay";
+import PushNotification from "react-native-push-notification";
+
 
 export default function DriverLogin({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
+
+  const sendNotification = ()=>{
+    PushNotification.localNotification({
+      title:"galeDelivery",
+      message:"hello "
+    });
+  }
+  const sendScheduleNotification = ()=>{
+    PushNotification.localNotificationSchedule({
+      title:"galeDelivery schedule",
+      message:"hello schedule",
+      date: new Date(Date.now()+5*1000)
+  });
+  }
+
+  useEffect(()=>{
+
+  },[])
 
   const handlePressLogin = () => {
     Keyboard.dismiss();
