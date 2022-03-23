@@ -59,7 +59,7 @@ export default function ForgotPass({ navigation }) {
             }, 1000);
           } else if (response.data.status === 2) {
             setTimeout(() => {
-              invalidtoast.show("plzz provide valid email", 1000);
+              invalidtoast.show("Plzz provide valid email", 1000);
             }, 500);
             setTimeout(() => {
               setLoader(false);
@@ -67,7 +67,7 @@ export default function ForgotPass({ navigation }) {
           } else {
             console.log("hello from forgot password", response.data);
             setTimeout(() => {
-              loginSuccess.show("password send on your mail", 1000);
+              loginSuccess.show("Password send on your mail", 1000);
             }, 500);
             setTimeout(() => {
               setLoader(false);

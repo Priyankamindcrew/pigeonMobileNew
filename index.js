@@ -9,33 +9,34 @@ import {
    } from 'react-native';
    
 import {name as appName} from './app.json';
-import PushNotification from "react-native-push-notification";
+// import PushNotification from "react-native-push-notification";
 
- PushNotification.configure({
-    onRegister: function (token) {
-      console.log("TOKEN:", token);
-    },
+//  PushNotification.configure({
+//     onRegister: function (token) {
+//       console.log("TOKEN:", token);
+//     },
   
-    onNotification: function (notification) {
-      console.log("NOTIFICATION:", notification);
-    },
+//     onNotification: function (notification) {
+//       console.log("NOTIFICATION:", notification);
+//     },
   
-    permissions: {
-      alert: true,
-      badge: true,
-      sound: true,
-    },
+//     permissions: {
+//       alert: true,
+//       badge: true,
+//       sound: true,
+//     },
   
-    popInitialNotification: true,
-    requestPermissions: Platform.OS === 'ios'
-  });
-  PushNotification.createChannel(
-      {
-          channelId: "GaleDelivery", // (required)
-          channelName: "GaleDeliveryChannel", // (required)
-      },
-      (created) => console.log(`createChannel returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
-  );
+//     popInitialNotification: true,
+//     //requestPermissions: Platform.OS === 'ios'
+//     requestPermissions: true
+//   });
+//   PushNotification.createChannel(
+//       {
+//           channelId: "GaleDeliveryTesting", // (required)
+//           channelName: "GaleDeliveryChannelTesting", // (required)
+//       },
+//       (created) => console.log(`createChannel returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
+//   );
   
 
 AppRegistry.registerComponent(appName, () => App);

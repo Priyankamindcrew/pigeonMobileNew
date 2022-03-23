@@ -18,7 +18,6 @@ import {
 } from "./style";
 
 export default function Header(props) {
-  console.log("nav-props=======>", props);
   return (
     <HeaderContainer>
       {props.showBackBTN ? (

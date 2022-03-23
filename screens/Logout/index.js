@@ -8,7 +8,7 @@ import { Dimensions, View, Text } from "react-native";
 export default function Logout({ navigation }) {
   useEffect(async () => {
     try {
-      await AsyncStorage.removeItem("driverEmail");
+      await AsyncStorage.removeItem('loginData');
       console.log("Done");
       navigation.replace("DriverLogin");
     } catch (error) {

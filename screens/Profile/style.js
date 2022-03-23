@@ -39,6 +39,17 @@ export const ProfileText = styled.Text`
    fontWeight:bold
 `;
 export const FormContainer = styled.View`
-  
   paddingTop:10px
+`;
+
+export const StaticTextBlock = styled.View`
+   paddingLeft: ${WIDTH * 0.02}px
+   width: ${WIDTH * 0.9}px
+   alignSelf: center
+   borderWidth: 1px
+   borderWidth: 0.5px
+   borderRadius: 10px
+   height: ${HEIGHT * 0.07}px
+   marginTop: ${HEIGHT * 0.01}px
+   justifyContent:center
 `;

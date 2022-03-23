@@ -90,5 +90,5 @@ export const BackToLoginText = styled.Text`
   marginLeft:7px
   fontSize:16px
   fontWeight:bold
-  color:#0298e3
+  color:blue
 `

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-const WIDTH = Dimensions.get("window").width;
-const HEIGHT = Dimensions.get("window").height;
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import Toast, { DURATION } from "react-native-easy-toast";
+import React, {useState, useEffect, useRef} from 'react';
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import Toast, {DURATION} from 'react-native-easy-toast';
 import {
   ScrollView,
   Dimensions,
@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ActivityIndicator,
-} from "react-native";
+} from 'react-native';
 import {
   Container,
   HeaderContainer,
@@ -41,38 +41,45 @@ import {
   RowFiveInnerContainer3,
   StatusContainer,
   StatusDownImgContainer,
-} from "./style";
-import Header from "../../components/Header";
+} from './style';
+import Header from '../../components/Header';
+import openMap from 'react-native-open-maps';
+import {createOpenLink, createMapLink} from 'react-native-open-maps';
+import Geocoder from 'react-native-geocoder';
+// import Geolocation from 'react-native-geolocation-service';
+import GetLocation from 'react-native-get-location';
 
-export default function Home({ navigation }) {
-  const [date, setDate] = useState("");
-  const [drEmail, setDrEmail] = useState("");
+export default function Home({navigation}) {
+  const [date, setDate] = useState('');
+  const [drEmail, setDrEmail] = useState('');
   const [data, setData] = useState([]);
-  const [empty, setEmpty] = useState("");
+  const [empty, setEmpty] = useState('');
   const [deliveryDate, setDeliveryDate] = useState([]);
   const [select, setSelect] = useState(null);
-  const [selectItem, setSelectItem] = useState("");
+  const [selectItem, setSelectItem] = useState('');
   const [updateData, setUpdateData] = useState(false);
   const [loader, setLoader] = useState(true);
+  //
+  const [driversAddress, setDriversAddress] = useState([]);
+  const [currentLatitude, setCurrentLatitude] = useState('...');
+  const [locationStatus, setLocationStatus] = useState('');
 
   const DropDownData = [
-    { id: 1, label: "picked-up", value: "picked-up" },
-    { id: 2, label: "delivered", value: "delivered" },
-    { id: 3, label: "in-transit", value: "in-transit" },
+    {id: 1, label: 'picked-up', value: 'picked-up'},
+    {id: 2, label: 'delivered', value: 'delivered'},
+    {id: 3, label: 'in-transit', value: 'in-transit'},
   ];
 
   useEffect(() => {
-    AsyncStorage.getItem("driverEmail").then((driverEmail) => {
-      setDrEmail(driverEmail);
-      axios(`https://pigeon-dev2.herokuapp.com/driver/driver-orders/${driverEmail}`)
-        .then((response) => {
-          console.log(
-            "hcjhsac===================================>",
-            response.data
-          );
+    AsyncStorage.getItem('loginData').then(data => {
+      data = JSON.parse(data);
+      axios(
+        `https://pigeon-dev2.herokuapp.com/driver/driver-orders/${data['driverEmail']}/${data['driverId']}`,
+      )
+        .then(response => {
           if (response.data.data === undefined) {
             setLoader(false);
-            setEmpty("No orders found for today");
+            setEmpty('No orders found for today');
           } else {
             setLoader(false);
             setData(response.data.data);
@@ -80,13 +87,34 @@ export default function Home({ navigation }) {
             setDeliveryDate(response.data.deliveryDateArr);
           }
         })
-        .catch((err) => {
-          console.log("failed", err);
+        .catch(err => {
+          console.log('failed', err);
         });
     });
   }, [updateData]);
 
-  const handlePress = (val) => {
+  const mylocationFunc = (toOrder) => {
+    GetLocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 15000,
+    })
+      .then(location => {
+        console.log('Position...', location);
+         openMap({
+          provider: 'google',
+          start: `${location.latitude}, ${location.longitude}`,
+          end: `${toOrder}`,
+          travelType: 'drive',
+        });
+      })
+      .catch(error => {
+        console.log('Position Error...', error);
+        const {code, message} = error;
+        console.warn(code, message);
+      });
+  };
+
+  const handlePress = val => {
     const acti = select === val ? -1 : val;
     setSelect(acti);
   };
@@ -94,37 +122,35 @@ export default function Home({ navigation }) {
   const handleRowPress = (val1, val2, val3) => {
     setSelectItem(val1);
     setSelect(-1);
-    console.log("ggggggg", val1, val2, val3);
-
     const dataNew = {
       status: val1,
       oid: val2,
-      user_status: val3
+      user_status: val3,
     };
 
     axios({
-      method: "POST",
+      method: 'POST',
       url: `https://pigeon-dev2.herokuapp.com/driver/Update-status`,
       data: dataNew,
     })
-      .then((response) => {
-        console.log("hello shubham ", response.data);
+      .then(response => {
+        // console.log('hello shubham000000000000000000000000', response.data);
         if (response.data.status === 1) {
-          console.log("data updated");
-          blanktoast.show("status updated", 1000);
+          console.log('data updated');
+          blanktoast.show('Status updated', 1000);
           setUpdateData(!updateData);
         } else {
-          console.log("there is problem in updating");
-          blanktoast.show("failed to update status", 1000);
+          console.log('there is problem in updating');
+          blanktoast.show('Failed to update status', 1000);
         }
       })
-      .catch((err) => {
-        console.log("failed", err);
+      .catch(err => {
+        console.log('failed', err);
       });
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
       <Container>
         <HeaderContainer>
           <Header
@@ -140,13 +166,13 @@ export default function Home({ navigation }) {
             color="blue"
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           />
         ) : (
           <>
-            {empty === "" ? (
+            {empty === '' ? (
               <OrderContainer>
                 <ScrollView showsVerticalScrollIndicator={false}>
                   {deliveryDate.map((item1, index1) => {
@@ -155,13 +181,11 @@ export default function Home({ navigation }) {
                         key={index1}
                         style={{
                           paddingTop: HEIGHT * 0.03,
-                        }}
-                      >
+                        }}>
                         <View
                           style={{
-                            flexDirection: "row",
-                          }}
-                        >
+                            flexDirection: 'row',
+                          }}>
                           <View
                             style={{
                               width: WIDTH * 0.78,
@@ -172,39 +196,40 @@ export default function Home({ navigation }) {
                               borderBottomWidth: 2,
                               borderLeftWidth: 1,
                               borderRightWidth: 1,
-                              borderColor: "#a6a6a6",
+                              borderColor: '#a6a6a6',
                               elevation: 0.5,
                               shadowOffset: {
                                 width: 0,
                                 height: 1.5,
                               },
-                              shadowColor: "black",
+                              shadowColor: 'black',
                               shadowOpacity: 5,
                               shadowRadius: 1,
-                            }}
-                          >
+                            }}>
                             <View>
                               <Text
                                 style={{
                                   fontSize: 18,
-                                  fontWeight: "bold",
-                                  color: "black",
-                                  textAlign: "center",
-                                }}
-                              >
+                                  fontWeight: 'bold',
+                                  color: 'black',
+                                  textAlign: 'center',
+                                }}>
                                 {item1}
                               </Text>
                             </View>
                           </View>
                           <TouchableOpacity
-                            onPress={() => navigation.navigate("MapScreen")}
-                            style={{
-                              justifyContent: "center",
-                              paddingLeft: WIDTH * 0.02,
+                            onPress={() => {
+                              navigation.navigate('MapScreen', {
+                                data: data,
+                              });
                             }}
-                          >
+                            style={{
+                              justifyContent: 'center',
+                              paddingLeft: WIDTH * 0.02,
+                            }}>
                             <Image
-                              source={require("../../image/mapmarkIcon.png")}
+                              source={require('../../image/mapmarkIcon.png')}
                             />
                           </TouchableOpacity>
                         </View>
@@ -246,7 +271,7 @@ export default function Home({ navigation }) {
                                   <AddressContainer>
                                     <AddressContainer1>
                                       <Image
-                                        source={require("../../image/smallgreenmarker3.png")}
+                                        source={require('../../image/smallgreenmarker3.png')}
                                         style={{
                                           width: WIDTH * 0.053,
                                           height: HEIGHT * 0.025,
@@ -270,8 +295,7 @@ export default function Home({ navigation }) {
                                   </RowFiveInnerContainer1>
 
                                   <RowFiveInnerContainer3
-                                    onPress={() => handlePress(index)}
-                                  >
+                                    onPress={() => handlePress(index)}>
                                     <StatusContainer>
                                       <LocationToText fontFamily="Poppins-Regular">
                                         {item.status}
@@ -279,7 +303,7 @@ export default function Home({ navigation }) {
                                     </StatusContainer>
                                     <StatusDownImgContainer>
                                       <Image
-                                        source={require("../../image/DownArrowIcon.png")}
+                                        source={require('../../image/DownArrowIcon.png')}
                                       />
                                     </StatusDownImgContainer>
                                   </RowFiveInnerContainer3>
@@ -288,33 +312,33 @@ export default function Home({ navigation }) {
                                   <View
                                     style={{
                                       borderWidth: 1,
-                                      backgroundColor: "#FFFFFF",
+                                      backgroundColor: '#FFFFFF',
                                       width: WIDTH * 0.28,
                                       marginLeft: WIDTH * 0.26,
                                       paddingBottom: 4,
-                                      borderColor: "#d9dbda",
+                                      borderColor: '#d9dbda',
                                       borderRadius: 10,
-                                    }}
-                                  >
+                                    }}>
                                     {DropDownData.map((item1, index1) => (
                                       <TouchableOpacity
                                         key={index1}
-                                        onPress={() =>
+                                        onPress={() => {
                                           handleRowPress(
                                             item1.value,
                                             item.order_id,
-                                            item.user_status
-                                          )
-                                        }
-                                      >
+                                            item.user_status,
+                                          );
+                                          navigation.navigate('MapScreen', {
+                                            data: data,
+                                          });
+                                        }}>
                                         <Text
                                           style={{
                                             padding: 4,
-                                            textAlign: "center",
-                                            fontWeight: "bold",
-                                            color: "black",
-                                          }}
-                                        >
+                                            textAlign: 'center',
+                                            fontWeight: 'bold',
+                                            color: 'black',
+                                          }}>
                                           {item1.value}
                                         </Text>
                                       </TouchableOpacity>
@@ -324,21 +348,32 @@ export default function Home({ navigation }) {
                                 <Separator />
                                 <BtnContainer>
                                   <DetailsButtonContainer
-                                    onPress={() =>
-                                      navigation.navigate("OrderDetails", {
+                                    onPress={() => {
+                                      console.log(
+                                        'llllllllllllllllll.......',
+                                        item.order_id,
+                                      );
+                                      console.log(
+                                        'llllllllllllllllll.......',
+                                        item,
+                                      );
+                                      navigation.navigate('OrderDetails', {
                                         orderId: item.order_id,
                                         driverEmail: item.driver_email,
-                                      })
-                                    }
-                                  >
+                                      });
+                                    }}>
                                     <DetaiButtonText fontFamily="Poppins-Bold">
                                       Details
                                     </DetaiButtonText>
                                   </DetailsButtonContainer>
-                                  <DetailsButtonContainer1>
+                                  <DetailsButtonContainer1
+                                    onPress={() =>  {
+                                      console.log('jvhbdufv...');
+                                      mylocationFunc(item.from_order);
+                                    }}>
                                     <DetailButtonContainerInner1>
                                       <Image
-                                        source={require("../../image/DirectiionIMG.png")}
+                                        source={require('../../image/DirectiionIMG.png')}
                                       />
                                     </DetailButtonContainerInner1>
                                     <DetailButtonContainerInner2>
@@ -360,15 +395,13 @@ export default function Home({ navigation }) {
             ) : (
               <View
                 style={{
-                  alignSelf: "center",
+                  alignSelf: 'center',
                   marginTop: HEIGHT * 0.2,
-                }}
-              >
+                }}>
                 <Text
                   style={{
                     fontSize: 20,
-                  }}
-                >
+                  }}>
                   {empty}
                 </Text>
               </View>
@@ -377,10 +410,10 @@ export default function Home({ navigation }) {
         )}
         <Toast
           position="center"
-          ref={(ref) => {
+          ref={ref => {
             blanktoast = ref;
           }}
-          style={{ backgroundColor: "black" }}
+          style={{backgroundColor: 'black'}}
         />
       </Container>
     </SafeAreaView>

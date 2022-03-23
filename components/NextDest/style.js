@@ -40,7 +40,6 @@ export const ContentContainer = styled.View`
    paddingTop:15px
    marginTop:${HEIGHT*0.02}px 
    borderRadius:30px
-   backgroundColor:#dee3e0
    width:${WIDTH*0.9}px
    alignSelf:center
 `;
@@ -70,6 +69,7 @@ fontFamily:${props => props.fontFamily}
 `
 export const LocationToHeading = styled.Text`
 fontSize:15px
+
 paddingLeft:10px
 fontFamily:${props => props.fontFamily}
 `
@@ -110,7 +110,7 @@ flexDirection:row
 alignItems:center
 `
 
-
+//======
 export const RowFive = styled.View`
   flexDirection:row
   alignItems:center
@@ -125,7 +125,7 @@ export const RowFourContainer2 = styled.View`
   flexDirection:row
   
 `
-
+//=========
 export const RowFourSubContainer1 = styled.View`
   
   justifyContent:center
@@ -250,7 +250,7 @@ export const BtnContainer = styled.View`
     flexDirection:row
     width:${WIDTH*0.8}px
     alignItems:center
-    marginTop:15px
+    marginTop:7px
     justifyContent:space-around
     zIndex:-1
 `
@@ -260,7 +260,7 @@ export const AddressContainer = styled.View`
     flexDirection:row
 `
 export const AddressContainer1 = styled.View`
-   
+  
 `
 export const AddressContainer2 = styled.View`
    width:${WIDTH*0.512}px
@@ -276,11 +276,11 @@ export const UpcomeDeliverContainer = styled.View`
     justifyContent:space-around
     paddingLeft:${WIDTH*0.05}px
     paddingRight:${WIDTH*0.05}px
-    
 `
 export const UpcomeDelInnerContainerOne = styled.TouchableOpacity`
-borderBottomWidth:1px
+borderBottomWidth:2px
 width:${WIDTH*0.28}px
+borderColor:#556EE6
 `
 export const UpcomInnerTextOne = styled.Text`
    textAlign:center
@@ -295,15 +295,13 @@ textAlign:center
 fontSize:18px
 `
 export const UpcomeDelInnerContainerThree = styled.TouchableOpacity`
-borderBottomWidth:2px
+borderBottomWidth:1px
 width:${WIDTH*0.28}px
-borderColor:#556EE6
 `
 export const UpcomInnerTextThree = styled.Text`
 textAlign:center
 fontSize:18px
 `
-
 
 export const RowFiveLocation = styled.View`
   flexDirection:row
@@ -321,33 +319,3 @@ fontSize:15px
 paddingLeft:10px
 fontFamily:${props => props.fontFamily}
 `
-
-export const UploadIMGContainer = styled.View`
-
-`
-
-
-
-export const RowFiveIMG = styled.View`
-  flexDirection:row
-  alignItems:center
-  marginTop:${HEIGHT*0.01}px
-`
-export const RowFiveInnerContainer1IMG = styled.TouchableOpacity`
-   marginLeft:${WIDTH*0.013}px
-   width:${WIDTH*0.38}px
-   justifyContent:center
-   
-`
-export const LocationToHeadingIMG = styled.Text`
-   fontSize:15px
-   paddingLeft:10px
-   fontFamily:${props => props.fontFamily}
-`
-export const RowFiveInnerContainer2IMG = styled.TouchableOpacity`
-  
-`
-
-
-
-                  

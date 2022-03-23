@@ -4,6 +4,7 @@ const HEIGHT = Dimensions.get("window").height;
 import axios from "axios";
 import {
   ScrollView,
+  Text,
   Dimensions,
   Image,
   SafeAreaView,
@@ -28,15 +29,27 @@ import {
   DropdownText2,
   DropDownBtnColumnfirst,
   DropDownBtnColumnsecond,
+  TakePictureBtnContainer,
+  TakeButtonText,
+  PicContainerOne,
+  PicContainerTwo
 } from "./style";
 import MapView, { Marker } from "react-native-maps";
 import Header from "../../components/Header";
 import Geocoder from "react-native-geocoder";
 import MapViewDirections from "react-native-maps-directions";
+import moment from "moment";
 
 export default function OrderDetails({ navigation, route }) {
+  // console.log('./././././',route)
+  const todayDate = new Date().toLocaleString("en-US", {
+    timeZone: "America/Toronto",
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
   console.log("hello shubham your data through route are", route.params);
-
+  const [date1, setDate1] = useState(moment(todayDate).format("DD/MM/YYYY"));
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
@@ -53,7 +66,7 @@ export default function OrderDetails({ navigation, route }) {
         console.log("aaaaaa ", response.data);
         if (response.data.data === undefined) {
           setLoader(false);
-          setEmpty("no orders found for today");
+          setEmpty("No orders found for today");
         } else {
           setLoader(false);
           console.log(
@@ -332,6 +345,16 @@ export default function OrderDetails({ navigation, route }) {
                       </DropdownInnerContainerOne>
                     </DropdownBTNContentContainer>
                   ) : null}
+                  {/* <TakePictureBtnContainer>
+                    <PicContainerOne>
+                      <TakeButtonText>
+                        Hello
+                      </TakeButtonText>
+                    </PicContainerOne>
+                    <PicContainerTwo>
+                      <Image />
+                    </PicContainerTwo>
+                  </TakePictureBtnContainer> */}
                 </ScrollView>
               </DropdownContainer>
             ))}

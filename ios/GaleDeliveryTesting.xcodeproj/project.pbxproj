@@ -11,7 +11,7 @@
 		0DBC874875A84510BC455DCE /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49F1485F4ADD4698BC56DD2E /* Poppins-Thin.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		18285FAE27DB19A600340970 /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18285FAD27DB19A500340970 /* libswiftWebKit.tbd */; };
 		1A71DA5095B44CBC8EB0C22A /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CF735BD1C484F539000CB97 /* Poppins-BlackItalic.ttf */; };
 		29D6F779E3124069B766178E /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0B0BF6400884B8EA65D8553 /* Poppins-ThinItalic.ttf */; };
 		4F4478874BA947B0868FD5F8 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD66BC91CF01427C8C209AD7 /* Poppins-Italic.ttf */; };
@@ -22,6 +22,7 @@
 		7BC913145D0849429D3E7336 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED36A02D525D4C11AEA96D58 /* Poppins-MediumItalic.ttf */; };
 		7D6F3C4A069A85B9E4C350BC /* libPods-GaleDeliveryTesting-GaleDeliveryTestingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F326D134E0F05997B7AACF49 /* libPods-GaleDeliveryTesting-GaleDeliveryTestingTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		84516C8D27BFD6D2001D94E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		848A8A2C26E74DF300462D3F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848A8A2B26E74DF300462D3F /* GoogleMaps.framework */; };
 		96B96FC5532E470198660648 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC4E3DED4C7944C390DCC549 /* Poppins-LightItalic.ttf */; };
 		A449B0FA17E640DDA3FF2D79 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE0E0BA24ED14B0691906287 /* Poppins-Medium.ttf */; };
@@ -57,6 +58,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GaleDeliveryTesting/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GaleDeliveryTesting/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GaleDeliveryTesting/main.m; sourceTree = "<group>"; };
+		18285FAD27DB19A500340970 /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
 		23C4261A426749B6A03ABF3E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		2DEF155A723641F39DD41152 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		463B109253203B3B46645C2C /* Pods-GaleDeliveryTesting-GaleDeliveryTestingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GaleDeliveryTesting-GaleDeliveryTestingTests.debug.xcconfig"; path = "Target Support Files/Pods-GaleDeliveryTesting-GaleDeliveryTestingTests/Pods-GaleDeliveryTesting-GaleDeliveryTestingTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18285FAE27DB19A600340970 /* libswiftWebKit.tbd in Frameworks */,
 				A9A61F12AD3F46D6E0065645 /* libPods-GaleDeliveryTesting.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +137,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18285FAD27DB19A500340970 /* libswiftWebKit.tbd */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				998D0A49A471D1C5288AA364 /* libPods-GaleDeliveryTesting.a */,
 				F326D134E0F05997B7AACF49 /* libPods-GaleDeliveryTesting-GaleDeliveryTestingTests.a */,
@@ -486,8 +490,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84516C8D27BFD6D2001D94E3 /* main.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +573,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SBW83F98H7;
 				ENABLE_BITCODE = NO;
@@ -577,13 +583,18 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.GaleDeliveryTesting;
 				PRODUCT_NAME = GaleDeliveryTesting;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -596,6 +607,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SBW83F98H7;
 				INFOPLIST_FILE = GaleDeliveryTesting/Info.plist;
@@ -603,13 +616,18 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.GaleDelivery;
 				PRODUCT_NAME = GaleDeliveryTesting;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

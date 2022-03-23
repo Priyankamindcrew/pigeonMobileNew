@@ -41,7 +41,7 @@ justifyContent:center
 export const HeadingText = styled.Text`
   fontSize:18px
   fontFamily:${props => props.fontFamily}
-  marginBottom:4px
+  
 `;
 
 export const ImageIconOne = styled.Image`

@@ -64,14 +64,15 @@ export default function PickedUp({ navigation }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    AsyncStorage.getItem("driverEmail").then((driverEmail) => {
-      setDrEmail(driverEmail);
+    AsyncStorage.getItem('loginData').then(data => {
+      data=JSON.parse(data)     
+      console.log(data['driverEmail'])
       axios(
-        `https://pigeon-dev2.herokuapp.com/driver/driver-orders-myRides/${driverEmail}/${statusData}?dateDataurl=${date1}`
+        `https://pigeon-dev2.herokuapp.com/driver/driver-orders-myRides/${data['driverEmail']}/${statusData}?dateDataurl=${date1}`
       )
         .then((response) => {
           console.log(
-            `hcjhsac-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=>>>>>> ${date1} `,
+            `hcjhsac-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=>>>>>> picked up ${date1} `,
             response.data.data
           );
           if (response.data.data === undefined) {
@@ -88,7 +89,8 @@ export default function PickedUp({ navigation }) {
           console.log("failed", err);
         });
     });
-  }, [updateData]);
+  }
+  , [updateData]);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);

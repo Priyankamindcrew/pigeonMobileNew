@@ -100,5 +100,31 @@ export const DropDownBtnColumnsecond = styled.View`
   justifyContent:center
   width:40%
 `;
+export const TakePictureBtnContainer = styled.View`
+  width:90%
+  alignSelf:center
+  marginTop:${HEIGHT*0.03}px
+  paddingTop:${HEIGHT*0.02}px
+  paddingBottom:${HEIGHT*0.02}px
+  backgroundColor:#E5E5E5
+  borderBottomWidth:3px
+  borderColor:#C4C4C4
+  shadowColor:black
+  elevation: 2
+  shadowOffset: 0px 3px
+  shadowColor: black
+  shadowOpacity: 0.3
+  shadowRadius: 0.7px
+`;
+export const TakeButtonText = styled.Text`
+  
+`;
+
+export const PicContainerOne = styled.View`
+  
+`;
+export const PicContainerTwo = styled.View`
+  
+`;
 
   
